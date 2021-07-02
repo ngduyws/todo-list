@@ -1,6 +1,6 @@
 export default {
-  "formCreate": {
-    "title": "New Task",
+  "formSetting": {
+    "titleNewTask": "New Task",
     "taskNamePlaceholder": "Add new task...",
     "descriptionLabel": "Description",
     "dueDateLabel": "Due Date",
@@ -10,5 +10,14 @@ export default {
     "low": "Low",
     "normal": "Normal",
     "high": "High"
+  },
+  "list": {
+    "title": "To Do List",
+    "searchPlaceholder": "Search...",
+    "bulkActionTitle": "Bulk Action:",
+    "messages": {
+      "confirmRemove": "Do you sure to remove this task?!",
+      "confirmRemoveMultipleTodos": "Do you sure to remove this tasks?!"
+    }
   }
 }

@@ -1,67 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { trim, isEmpty } from 'lodash'
 
 import { prioritiyOptions } from 'utils/constants/enums'
 import { validateTaskInput } from 'validations/todos'
-import { errorsSelector, taskInputSelector } from 'store/todos/selectors'
-import {
-  changeTaskInput,
-  setTaskInput,
-  setErrors,
-  resetErrors,
-  createNewTask
-} from 'store/todos/slice'
 import { Card, Button, Datepicker, Select } from 'components/primitive'
 import { FormGroup } from 'components/compound'
+import { updateTodo } from 'store/todos/slice'
 
-function FormCreate() {
+function FormEdit({ open, todo, toggleCollapse }) {
   const { t } = useTranslation()
   const getLabel = (key) => t(`todos.formSetting.${key}`)
-  const taskInput = useSelector(taskInputSelector)
-  const errors = useSelector(errorsSelector)
   const dispatch = useDispatch()
-  const { title, description, dueDate, priority } = taskInput
+  const initTodo = () => ({
+    title: todo.title,
+    description: todo.description,
+    dueDate: todo.dueDate,
+    priority: todo.priority
+  })
+  const [newTodo, setNewTodo] = useState(initTodo())
+  const [errors, setErrors] = useState({})
+
+  useEffect(() => {
+    if (!open) {
+      setNewTodo(initTodo())
+    }
+  }, [open])
 
   const prioritiyOptionsConverted = Object.keys(prioritiyOptions).map(key => ({
     label: t(`todos.prioritiyOptions.${key}`),
     value: key
   }))
 
-  function handleChange(payload) {
-    dispatch(changeTaskInput(payload))
+  function handleChange({ name, value }) {
+    setNewTodo({
+      ...newTodo,
+      [name]: value
+    })
   }
 
   function handleSubmit() {
-    dispatch(resetErrors())
-
-    const dataTrimed = {
-      dueDate,
-      priority,
-      title: trim(title),
-      description: trim(description)
+    const validTodo = {
+      ...newTodo,
+      title: trim(newTodo.title)
     }
-
-    dispatch(setTaskInput(dataTrimed))
-
-    const errors = validateTaskInput(dataTrimed)
+    setNewTodo(validTodo)
+    const errors = validateTaskInput(validTodo)
 
     if (!isEmpty(errors)) {
-      dispatch(setErrors(errors))
+      setErrors(errors)
     } else {
-      dispatch(createNewTask(dataTrimed))
+      dispatch(updateTodo({ ...validTodo, id: todo.id }))
+      setNewTodo(initTodo())
+      toggleCollapse()
     }
   }
 
   return (
     <Card
-      title={getLabel('titleNewTask')}
+      className="px-0 py-0 border-0"
     >
       <FormGroup
-        placeholder={getLabel('taskNamePlaceholder')}
         name="title"
-        value={title}
+        value={newTodo.title}
         onChange={handleChange}
         errorMessage={errors.title}
       />
@@ -70,7 +72,7 @@ function FormCreate() {
         type="textarea"
         label={getLabel('descriptionLabel')}
         name="description"
-        value={description}
+        value={newTodo.description}
         onChange={handleChange}
         errorMessage={errors.description}
       />
@@ -80,7 +82,7 @@ function FormCreate() {
           <Datepicker
             label={getLabel('dueDateLabel')}
             name="dueDate"
-            date={dueDate}
+            date={newTodo.dueDate}
             onChange={handleChange}
             errorMessage={errors.dueDate}
           />
@@ -91,7 +93,7 @@ function FormCreate() {
             label={getLabel('priorityLabel')}
             options={prioritiyOptionsConverted}
             name="priority"
-            value={priority}
+            value={newTodo.priority}
             onChange={handleChange}
             errorMessage={errors.priority}
           />
@@ -100,7 +102,7 @@ function FormCreate() {
 
       <div className="text-center">
         <Button
-          label={t('commons.button.add')}
+          label={t('commons.button.update')}
           color="success"
           className="w-100"
           onClick={handleSubmit}
@@ -110,4 +112,4 @@ function FormCreate() {
   )
 }
 
-export default FormCreate
+export default FormEdit

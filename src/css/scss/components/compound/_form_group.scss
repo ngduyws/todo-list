@@ -14,13 +14,28 @@
     width: 100%;
     border: 1px solid $gray;
     border-radius: $border-radius-medium;
-    padding: 4px 16px;
+    padding: 4px 12px;
     line-height: 22px;
+    transition: .15s;
 
     &:hover,
     &:focus {
       border-color: $primary;
       outline: none;
+    }
+
+    &.error {
+      border-color: $danger;
+    }
+  }
+
+  .form-description {
+    font-size: 13px;
+    margin-bottom: 0;
+    margin-top: 4px;
+
+    &.error {
+      color: $danger;
     }
   }
 }

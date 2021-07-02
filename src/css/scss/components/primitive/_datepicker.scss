@@ -1,0 +1,51 @@
+.datepicker-group {
+  .datepicker-control {
+    display: flex;
+
+    input {
+      border: 1px solid $gray;
+      border-right: 0;
+      transition: .15s;
+      padding: 4px 12px;
+      width: calc(100% - 32px);
+
+      &:hover,
+      &:focus {
+        border-color: $gray;
+        outline: none;
+      }
+    }
+
+    .datepicker-suffix {
+      border: 1px solid $gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      min-width: 32px;
+      height: 32px;
+      transition: .15s;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &:hover {
+      input,
+      .datepicker-suffix {
+        border-color: $primary;
+      }
+    }
+  }
+
+  &.error {
+    .datepicker-control {
+      input,
+      .datepicker-suffix {
+        border-color: $danger;
+      }
+    }
+  }
+}

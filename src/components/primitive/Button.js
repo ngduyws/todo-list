@@ -16,7 +16,7 @@ Button.propTypes = {
   label: PropTypes.node.isRequired,
   className: PropTypes.string,
   onClick: PropTypes.func,
-  color: PropTypes.oneOf(['success, primary, danger'])
+  color: PropTypes.oneOf(['success', 'primary', 'danger', 'turquoise'])
 }
 
 Button.defaultProps = {

@@ -19,9 +19,14 @@
 
 .col-12,
 .col-lg-5,
-.col-lg-7 {
+.col-lg-7,
+.col-6 {
 	padding-left: 15px;
 	padding-right: 15px;
+}
+
+.col-6 {
+	width: 50%;
 }
 
 .col-12 {
@@ -38,4 +43,8 @@
 	@media (min-width: 992px) {
 		width: calc(700% / 12);
 	}
+}
+
+.main-container {
+	min-height: calc(100vh - 140px);
 }

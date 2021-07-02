@@ -17,8 +17,11 @@
 // Primitive
 @import "scss/components/primitive/buttons";
 @import "scss/components/primitive/card";
+@import "scss/components/primitive/datepicker";
+@import "scss/components/primitive/select";
 
 // Compound
-@import "scss/components/compound/form_group"
+@import "scss/components/compound/form_group";
 
-/* Pages */
+/* Page */
+@import "scss/pages/todos";

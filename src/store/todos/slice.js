@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import reducers from './reducers';
+import { initTaskInput } from './constants'
 
 const initialState = {
+  taskInput: initTaskInput(),
+  errors: {},
+  todosSearchText: '',
+  todosSelected: []
 }
 
 export const slice = createSlice({
@@ -10,11 +16,18 @@ export const slice = createSlice({
   reducers
 })
 
-// Action creators are generated for each case reducer function
 export const {
-  increment,
-  decrement,
-  incrementByAmount
+  changeTaskInput,
+  setTaskInput,
+  setErrors,
+  resetErrors,
+  createNewTask,
+  setTodos,
+  changeTodosSearchText,
+  updateTodo,
+  removeTodo,
+  setTodosSelected,
+  removeTodos
 } = slice.actions
 
 export default slice.reducer

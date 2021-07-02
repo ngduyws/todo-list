@@ -3,6 +3,10 @@ export default {
     "detail": "Detail",
     "remove": "Remove",
     "add": "Add",
-    "update": "Update"
+    "update": "Update",
+    "done": "Done"
+  },
+  "messages": {
+    "required": "This field is required!"
   }
 }

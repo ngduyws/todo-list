@@ -1,0 +1,66 @@
+.collapse {
+  margin-bottom: 20px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $gray;
+    padding: 16px;
+
+    .title {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: $white;
+    padding: 0 20px;
+    transition: max-height 0.1s, padding-top 0.1s, padding-bottom 0.1s;
+
+    &.active {
+      max-height: 500px;
+      padding: 20px;
+      border: 1px solid $gray;
+      border-top: 0;
+      overflow: visible;
+      transition: max-height 0.3s ease-out, padding-top 0.15s ease-out, padding-bottom 0.15s ease-out;
+    }
+  }
+
+  .title {
+    width: calc(100% - 160px);
+  }
+
+  .todo-title {
+    margin-left: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100% - 30px);
+  }
+}
+
+.group-buttons {
+  .btn {
+    &:first-child {
+      margin-right: 12px;
+    }
+  }
+}
+
+.bulk-action {
+  position: fixed;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $gray;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  padding: 0 80px;
+}

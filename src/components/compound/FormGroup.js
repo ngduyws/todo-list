@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function FormGroup({
-  label, placeholder, value, onChange, name, type, className
+  label, placeholder, value, onChange, name, type, className, errorMessage
 }) {
   function handleChange(e) {
     const { name, value } = e.target
@@ -10,11 +10,12 @@ function FormGroup({
   }
 
   return (
-    <div className={`form-group ${className}`}>
+    <div className={`form-group ${className} ${errorMessage ? 'error' : ''}`}>
       {label && <label className="form-label">{label}</label>}
+
       {type === 'textarea' && (
         <textarea
-          className="form-control"
+          className={`form-control ${errorMessage ? 'error' : ''}`}
           placeholder={placeholder}
           value={value}
           name={name}
@@ -25,13 +26,15 @@ function FormGroup({
       {type === 'text' && (
         <input
           type="text"
-          className="form-control"
+          className={`form-control ${errorMessage ? 'error' : ''}`}
           placeholder={placeholder}
           value={value}
           name={name}
           onChange={handleChange}
         />
       )}
+
+      {errorMessage && <p className="form-description error">{errorMessage}</p>}
     </div>
   )
 }
@@ -42,8 +45,9 @@ FormGroup.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(['text, textarea']),
-  className: PropTypes.string
+  type: PropTypes.oneOf(['text', 'textarea']),
+  className: PropTypes.string,
+  errorMessage: PropTypes.string
 }
 
 FormGroup.defaultProps = {
@@ -52,7 +56,8 @@ FormGroup.defaultProps = {
   name: '',
   value: '',
   type: 'text',
-  className: ''
+  className: '',
+  errorMessage: ''
 }
 
 export default FormGroup

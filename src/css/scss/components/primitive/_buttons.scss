@@ -25,4 +25,12 @@
   &.primary {
     background-color: $primary;
   }
+
+  &.danger {
+    background-color: $danger;
+  }
+
+  &.turquoise {
+    background-color: $turquoise;
+  }
 }

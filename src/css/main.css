@@ -16,6 +16,23 @@
 .mb-0 {
   margin-bottom: 0 !important; }
 
+.mt-4 {
+  margin-top: 24px !important; }
+
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important; }
+
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important; }
+
+.w-100 {
+  width: 100% !important; }
+
+.border-0 {
+  border: 0 !important; }
+
 body {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -72,9 +89,13 @@ img {
 
 .col-12,
 .col-lg-5,
-.col-lg-7 {
+.col-lg-7,
+.col-6 {
   padding-left: 15px;
   padding-right: 15px; }
+
+.col-6 {
+  width: 50%; }
 
 .col-12 {
   width: 100%; }
@@ -87,11 +108,14 @@ img {
   .col-lg-7 {
     width: calc(700% / 12); } }
 
+.main-container {
+  min-height: calc(100vh - 140px); }
+
 header {
   height: 60px; }
 
 footer {
-  height: 60px; }
+  height: 80px; }
 
 /* Components */
 .btn {
@@ -113,6 +137,10 @@ footer {
     background-color: #5cb85c; }
   .btn.primary {
     background-color: #4a74fd; }
+  .btn.danger {
+    background-color: #d9534f; }
+  .btn.turquoise {
+    background-color: #30bcd4; }
 
 /*------------------------------------*\
     #CARD
@@ -125,6 +153,63 @@ footer {
   .card .card__title {
     text-align: center;
     margin-bottom: 36px; }
+
+.datepicker-group .datepicker-control {
+  display: flex; }
+  .datepicker-group .datepicker-control input {
+    border: 1px solid #ddd;
+    border-right: 0;
+    transition: .15s;
+    padding: 4px 12px;
+    width: calc(100% - 32px); }
+    .datepicker-group .datepicker-control input:hover, .datepicker-group .datepicker-control input:focus {
+      border-color: #ddd;
+      outline: none; }
+  .datepicker-group .datepicker-control .datepicker-suffix {
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    transition: .15s; }
+    .datepicker-group .datepicker-control .datepicker-suffix svg {
+      width: 16px;
+      height: 16px; }
+  .datepicker-group .datepicker-control:hover input,
+  .datepicker-group .datepicker-control:hover .datepicker-suffix {
+    border-color: #4a74fd; }
+
+.datepicker-group.error .datepicker-control input,
+.datepicker-group.error .datepicker-control .datepicker-suffix {
+  border-color: #d9534f; }
+
+.select-group .select__value-container {
+  line-height: 1;
+  padding: 2px 12px; }
+
+.select-group .select__control {
+  border-color: #ddd;
+  border-radius: 0;
+  transition: .15s; }
+  .select-group .select__control:hover {
+    border-color: #4a74fd;
+    outline: none; }
+
+.select-group .select__indicators {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .select-group .select__indicators svg {
+    width: 12px;
+    height: 12px; }
+
+.select-group .select__single-value {
+  line-height: 22px; }
 
 .form-group {
   display: flex;
@@ -139,10 +224,66 @@ footer {
     width: 100%;
     border: 1px solid #ddd;
     border-radius: 4px;
-    padding: 4px 16px;
-    line-height: 22px; }
+    padding: 4px 12px;
+    line-height: 22px;
+    transition: .15s; }
     .form-group .form-control:hover, .form-group .form-control:focus {
       border-color: #4a74fd;
       outline: none; }
+    .form-group .form-control.error {
+      border-color: #d9534f; }
+  .form-group .form-description {
+    font-size: 13px;
+    margin-bottom: 0;
+    margin-top: 4px; }
+    .form-group .form-description.error {
+      color: #d9534f; }
 
-/* Pages */
+/* Page */
+.collapse {
+  margin-bottom: 20px; }
+  .collapse__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 16px; }
+    .collapse__header .title {
+      display: flex;
+      align-items: center; }
+  .collapse__content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 0 20px;
+    transition: max-height 0.1s, padding-top 0.1s, padding-bottom 0.1s; }
+    .collapse__content.active {
+      max-height: 500px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-top: 0;
+      overflow: visible;
+      transition: max-height 0.3s ease-out, padding-top 0.15s ease-out, padding-bottom 0.15s ease-out; }
+  .collapse .title {
+    width: calc(100% - 160px); }
+  .collapse .todo-title {
+    margin-left: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100% - 30px); }
+
+.group-buttons .btn:first-child {
+  margin-right: 12px; }
+
+.bulk-action {
+  position: fixed;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ddd;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  padding: 0 80px; }
